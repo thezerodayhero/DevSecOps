@@ -13,12 +13,12 @@ pipeline {
                 sh 'GITLEAKS_CONFIG=.gitleaks.toml gitleaks dir .'
             }
         }
-
+        
         stage('SAST') {
-            steps {
-                sh '/opt/semgrep-venv/bin/semgrep scan --config auto /var/jenkins_home/workspace/Class8-DevSecOps'
-            }
+        steps {
+            sh '/opt/semgrep-venv/bin/semgrep scan --config auto --error .'
         }
+    }
 
         stage('Build') {
             steps {
