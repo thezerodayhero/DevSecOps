@@ -8,6 +8,12 @@ pipeline {
             }
         }
 
+        stage('Secret Scan') {
+            steps {
+                sh 'GITLEAKS_CONFIG=.gitleaks.toml gitleaks dir .'
+            }
+        }
+
         stage('Build') {
             steps {
                 sh 'python3 --version'
