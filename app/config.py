@@ -1,1 +1,3 @@
-API_KEY = "THIS_IS_A_FAKE_INTERNAL_KEY_123456"
+import os
+
+API_KEY = os.getenv("API_KEY")
