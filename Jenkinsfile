@@ -19,7 +19,16 @@ pipeline {
             sh '/opt/semgrep-venv/bin/semgrep scan --config auto --error .'
         }
     }
-
+        
+        stage('SCA') {
+            steps {
+                sh '''
+                    /opt/sca-venv/bin/pip-audit \
+                    -r requirements.txt
+                '''
+            }
+        }
+        
         stage('Build') {
             steps {
                 sh 'python3 --version'
